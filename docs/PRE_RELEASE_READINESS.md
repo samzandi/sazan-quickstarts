@@ -29,13 +29,13 @@ Each quickstart has a canonical CI workflow and repository validation checks the
 - Duplicate legacy workflows for Agent Starter and MCP Starter were removed.
 - The canonical MCP workflow retains its server import smoke check.
 - Root and quickstart indexes reflect implemented examples rather than planned-only status.
+- The repository owner explicitly selected Apache-2.0 and the canonical full license text is stored in `LICENSE`.
 
 ## Explicit blockers before first public release
 
-1. **License selection** — requires an explicit owner decision. No license is inferred or selected automatically.
-2. **Release version/tag** — must be selected intentionally at release time.
-3. **Final CI snapshot** — all release-relevant checks must be green on the exact release commit.
-4. **Third-party licensing review** — dependencies, SDKs, models, and any copied assets must be checked for compatibility and attribution requirements.
+1. **Release version/tag** — must be selected intentionally at release time.
+2. **Final CI snapshot** — all release-relevant checks must be green on the exact release commit.
+3. **Third-party licensing review** — dependencies, SDKs, models, and any copied assets must be checked for compatibility and attribution requirements.
 
 ## Not established by current evidence
 
