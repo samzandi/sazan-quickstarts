@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from urllib.parse import urljoin
 
 from playwright.sync_api import Browser, Page, sync_playwright
 
@@ -46,6 +47,7 @@ class SafeBrowser:
     def open(self, url: str) -> PageSnapshot:
         self.policy.validate(url)
         self.page.goto(url, wait_until="domcontentloaded")
+        self.policy.validate(self.page.url)
         return self.snapshot()
 
     def snapshot(self, max_chars: int = 4000) -> PageSnapshot:
@@ -57,8 +59,6 @@ class SafeBrowser:
         href = link.get_attribute("href")
         if href is None:
             raise ValueError("Selected link has no href.")
-        target = self.page.url if href.startswith("#") else self.page.url
-        from urllib.parse import urljoin
 
         target = urljoin(self.page.url, href)
         self.policy.validate(target)
