@@ -2,22 +2,26 @@ from __future__ import annotations
 
 import os
 
-from providers.anthropic_provider import AnthropicProvider
 from providers.mock import MockProvider
-from providers.ollama_provider import OllamaProvider
-from providers.openai_provider import OpenAIProvider
 
 
 def build_provider():
+    """Build a provider from environment configuration using lazy imports."""
     name = os.getenv("SAZAN_PROVIDER", "mock").strip().lower()
 
     if name == "mock":
         return MockProvider()
     if name == "openai":
+        from providers.openai_provider import OpenAIProvider
+
         return OpenAIProvider()
     if name in {"anthropic", "claude"}:
+        from providers.anthropic_provider import AnthropicProvider
+
         return AnthropicProvider()
     if name == "ollama":
+        from providers.ollama_provider import OllamaProvider
+
         return OllamaProvider()
 
     supported = "mock, openai, anthropic, ollama"
