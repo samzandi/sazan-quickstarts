@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'README.md'
+      - 'LICENSE'
       - 'docs/**'
       - 'quickstarts/**'
       - 'tools/validate_repository.py'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - 'README.md'
+      - 'LICENSE'
       - 'docs/**'
       - 'quickstarts/**'
       - 'tools/validate_repository.py'
