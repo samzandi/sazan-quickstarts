@@ -66,6 +66,16 @@ def validate() -> list[str]:
         if not (ROOT / relative).is_file():
             errors.append(f"missing release-readiness document: {relative}")
 
+    license_file = ROOT / "LICENSE"
+    if not license_file.is_file():
+        errors.append("missing repository LICENSE file")
+    else:
+        license_text = license_file.read_text(encoding="utf-8")
+        if "Apache License" not in license_text or "Version 2.0" not in license_text:
+            errors.append("repository LICENSE is not Apache-2.0")
+
+    if "apache license, version 2.0" not in root_readme.lower():
+        errors.append("root README must identify Apache-2.0 as the selected license")
     if "pre-release" not in root_readme.lower():
         errors.append("root README must explicitly state pre-release status")
     if "production-ready" not in root_readme.lower():
@@ -83,8 +93,8 @@ def main() -> int:
         return 1
 
     print(
-        f"Repository validation passed for {len(EXPECTED)} quickstarts "
-        f"and {len(REQUIRED_RELEASE_DOCS)} release-readiness documents."
+        f"Repository validation passed for {len(EXPECTED)} quickstarts, "
+        f"{len(REQUIRED_RELEASE_DOCS)} release-readiness documents, and Apache-2.0 licensing."
     )
     return 0
 
