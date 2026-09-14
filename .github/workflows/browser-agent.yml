@@ -1,0 +1,38 @@
+name: Browser Agent CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/browser-agent
+    paths:
+      - 'quickstarts/browser-agent/**'
+      - '.github/workflows/browser-agent.yml'
+  pull_request:
+    paths:
+      - 'quickstarts/browser-agent/**'
+      - '.github/workflows/browser-agent.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Python dependencies
+        working-directory: quickstarts/browser-agent
+        run: pip install -r requirements.txt
+      - name: Install Chromium and OS dependencies
+        working-directory: quickstarts/browser-agent
+        run: playwright install --with-deps chromium
+      - name: Run tests
+        working-directory: quickstarts/browser-agent
+        run: python -m unittest discover -s tests -v
