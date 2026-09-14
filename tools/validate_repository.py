@@ -29,6 +29,7 @@ LEGACY_WORKFLOWS = (
 REQUIRED_RELEASE_DOCS = (
     "docs/RELEASE_CHECKLIST.md",
     "docs/PRE_RELEASE_READINESS.md",
+    "docs/THIRD_PARTY_LICENSES.md",
 )
 
 
@@ -66,6 +67,15 @@ def validate() -> list[str]:
         if not (ROOT / relative).is_file():
             errors.append(f"missing release-readiness document: {relative}")
 
+    third_party = ROOT / "docs" / "THIRD_PARTY_LICENSES.md"
+    if third_party.is_file():
+        third_party_text = third_party.read_text(encoding="utf-8").lower()
+        for dependency in ("openai", "anthropic", "playwright", "mcp[cli]"):
+            if dependency not in third_party_text:
+                errors.append(f"third-party review missing direct dependency: {dependency}")
+        if "transitive" not in third_party_text:
+            errors.append("third-party review must address transitive dependencies")
+
     license_file = ROOT / "LICENSE"
     if not license_file.is_file():
         errors.append("missing repository LICENSE file")
@@ -94,7 +104,8 @@ def main() -> int:
 
     print(
         f"Repository validation passed for {len(EXPECTED)} quickstarts, "
-        f"{len(REQUIRED_RELEASE_DOCS)} release-readiness documents, and Apache-2.0 licensing."
+        f"{len(REQUIRED_RELEASE_DOCS)} release-readiness documents, Apache-2.0 licensing, "
+        "and direct third-party dependency review."
     )
     return 0
 
