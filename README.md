@@ -36,7 +36,7 @@ Run the repository-wide structural validator with:
 python tools/validate_repository.py
 ```
 
-The validator checks the quickstart index, required README/test structure, canonical workflow coverage, legacy duplicate workflows, and release-readiness documentation.
+The validator checks the quickstart index, required README/test structure, canonical workflow coverage, legacy duplicate workflows, release-readiness documentation, and the selected repository license.
 
 ## Release readiness
 
@@ -46,7 +46,7 @@ Before any public release, review:
 - `docs/PRE_RELEASE_READINESS.md`
 - `SECURITY.md`
 
-The first public release is blocked until the repository owner explicitly selects a license and the exact release commit has green release-relevant CI.
+Apache-2.0 has been selected by the repository owner. A public release still requires an intentional version/tag, a final green CI snapshot on the exact release commit, and a third-party licensing/attribution review.
 
 ## Project discipline
 
@@ -66,4 +66,4 @@ The repository is intended to be discoverable around provider-neutral AI agents,
 
 ## License
 
-A license has not yet been selected. License selection is an explicit owner decision and is required before the first public release.
+Licensed under the Apache License, Version 2.0. See `LICENSE` for the full license text.
