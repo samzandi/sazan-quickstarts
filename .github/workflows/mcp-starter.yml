@@ -30,3 +30,6 @@ jobs:
       - name: Run tests
         working-directory: quickstarts/mcp-starter
         run: python -m unittest discover -s tests -v
+      - name: Import server
+        working-directory: quickstarts/mcp-starter
+        run: python -c "import server; print(server.mcp.name)"
