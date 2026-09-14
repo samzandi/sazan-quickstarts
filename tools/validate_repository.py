@@ -26,6 +26,11 @@ LEGACY_WORKFLOWS = (
     "test-mcp-starter.yml",
 )
 
+REQUIRED_RELEASE_DOCS = (
+    "docs/RELEASE_CHECKLIST.md",
+    "docs/PRE_RELEASE_READINESS.md",
+)
+
 
 def validate() -> list[str]:
     errors: list[str] = []
@@ -57,6 +62,15 @@ def validate() -> list[str]:
         if (WORKFLOWS / legacy).exists():
             errors.append(f"legacy duplicate workflow still present: {legacy}")
 
+    for relative in REQUIRED_RELEASE_DOCS:
+        if not (ROOT / relative).is_file():
+            errors.append(f"missing release-readiness document: {relative}")
+
+    if "pre-release" not in root_readme.lower():
+        errors.append("root README must explicitly state pre-release status")
+    if "production-ready" not in root_readme.lower():
+        errors.append("root README must explicitly address production-ready status")
+
     return errors
 
 
@@ -68,7 +82,10 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Repository validation passed for {len(EXPECTED)} quickstarts.")
+    print(
+        f"Repository validation passed for {len(EXPECTED)} quickstarts "
+        f"and {len(REQUIRED_RELEASE_DOCS)} release-readiness documents."
+    )
     return 0
 
 

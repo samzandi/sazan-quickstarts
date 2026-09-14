@@ -36,7 +36,17 @@ Run the repository-wide structural validator with:
 python tools/validate_repository.py
 ```
 
-The validator checks the quickstart index, required README/test structure, canonical workflow coverage, and legacy duplicate workflows.
+The validator checks the quickstart index, required README/test structure, canonical workflow coverage, legacy duplicate workflows, and release-readiness documentation.
+
+## Release readiness
+
+Before any public release, review:
+
+- `docs/RELEASE_CHECKLIST.md`
+- `docs/PRE_RELEASE_READINESS.md`
+- `SECURITY.md`
+
+The first public release is blocked until the repository owner explicitly selects a license and the exact release commit has green release-relevant CI.
 
 ## Project discipline
 
@@ -48,8 +58,12 @@ See `START_HERE.md`, `AGENTS.md`, and `SECURITY.md` before contributing.
 
 ## Status
 
-The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository as a whole is still pre-release and must not be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
+The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository as a whole is still **pre-release** and must **not** be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
+
+## Discoverability
+
+The repository is intended to be discoverable around provider-neutral AI agents, MCP, Python agent workflows, browser automation, coding agents, document/email/research agents, security-first examples, and ReViva restoration planning. Recommended repository description and GitHub topics are recorded in `docs/PRE_RELEASE_READINESS.md` so repository settings can be applied deliberately rather than inferred.
 
 ## License
 
-A license will be selected before the first public release.
+A license has not yet been selected. License selection is an explicit owner decision and is required before the first public release.
