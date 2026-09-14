@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 from agent import Agent
-from providers.mock import MockProvider
+from providers.factory import build_provider
 
 
 def main() -> None:
-    agent = Agent(MockProvider())
+    provider = build_provider()
+    agent = Agent(provider)
+
     print("Sazan Agent Starter")
+    print(f"Provider: {provider.__class__.__name__}")
     print("Type 'exit' to quit.\n")
 
     while True:
@@ -22,7 +25,13 @@ def main() -> None:
         if not task:
             continue
 
-        print(f"Agent> {agent.run(task)}\n")
+        try:
+            result = agent.run(task)
+        except Exception as exc:
+            print(f"Error> {exc}\n")
+            continue
+
+        print(f"Agent> {result}\n")
 
 
 if __name__ == "__main__":
