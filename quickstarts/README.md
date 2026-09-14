@@ -1,19 +1,30 @@
 # Quickstarts
 
-Each directory in this folder should be independently understandable and runnable.
+Each directory in this folder should be independently understandable and testable.
 
-Planned starters:
+## Implemented
 
 - `agent-starter`
 - `browser-agent`
-- `computer-agent`
+- `business-agent`
 - `coding-agent`
+- `computer-agent`
 - `customer-support-agent`
 - `document-agent`
 - `email-agent`
-- `research-agent`
-- `business-agent`
-- `reviva-agent`
 - `mcp-starter`
+- `research-agent`
+- `reviva-agent`
 
-Every quickstart should include its own README, `.env.example`, setup instructions, security notes, and a clear statement of what has actually been tested.
+## Structural requirements
+
+Every implemented quickstart must include:
+
+- its own `README.md`
+- a `tests/` directory with deterministic tests
+- a canonical workflow at `.github/workflows/<quickstart>.yml`
+- explicit security/safety boundaries
+- a clear statement of what has actually been tested
+- no production-ready claim without deployment, security, failure-handling, and observability evidence
+
+Repository-wide consistency is checked by `tools/validate_repository.py` and the `Repository Validation` workflow.
