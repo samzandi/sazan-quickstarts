@@ -1,0 +1,32 @@
+name: ReViva Agent CI
+
+on:
+  push:
+    paths:
+      - 'quickstarts/reviva-agent/**'
+      - '.github/workflows/reviva-agent.yml'
+  pull_request:
+    paths:
+      - 'quickstarts/reviva-agent/**'
+      - '.github/workflows/reviva-agent.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run tests
+        working-directory: quickstarts/reviva-agent
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Run demo
+        working-directory: quickstarts/reviva-agent
+        run: python app.py
