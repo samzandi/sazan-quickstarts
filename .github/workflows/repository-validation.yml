@@ -1,0 +1,32 @@
+name: Repository Validation
+
+on:
+  push:
+    paths:
+      - 'README.md'
+      - 'quickstarts/**'
+      - 'tools/validate_repository.py'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'README.md'
+      - 'quickstarts/**'
+      - 'tools/validate_repository.py'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate repository structure
+        run: python tools/validate_repository.py
