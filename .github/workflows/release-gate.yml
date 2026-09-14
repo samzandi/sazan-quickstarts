@@ -1,6 +1,16 @@
 name: Release Gate
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+      - 'LICENSE'
+      - 'docs/**'
+      - 'quickstarts/**'
+      - 'tools/**'
+      - '.github/workflows/**'
   pull_request:
     paths:
       - 'README.md'
