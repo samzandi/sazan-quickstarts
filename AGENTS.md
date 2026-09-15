@@ -2,6 +2,10 @@
 
 Instructions for AI agents working in this repository.
 
+## Shared execution policy
+
+Apply `sazan-efficient-operator` as the execution-efficiency layer. Minimize unnecessary token use, repeated context, narration, and interruptions. Continue consecutive safe steps without asking for permission merely to proceed. Ask only for genuine blockers. Never sacrifice correctness, testing, security, documentation, or evidence for brevity.
+
 ## Core behavior
 
 - Read `START_HERE.md` before making changes.
