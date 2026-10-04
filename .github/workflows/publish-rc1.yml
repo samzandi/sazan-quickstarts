@@ -1,0 +1,65 @@
+name: Publish v0.1.0-rc.1
+
+on:
+  workflow_run:
+    workflows: ["Release Gate"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout exact verified commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 1
+
+      - name: Publish pre-release idempotently
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERIFIED_SHA: ${{ github.event.workflow_run.head_sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tag="v0.1.0-rc.1"
+          title="Sazan Quickstarts v0.1.0-rc.1"
+          notes="docs/RELEASE_NOTES_v0.1.0-rc.1.md"
+
+          test -s "$notes"
+
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $tag already exists; verifying its tag target."
+          else
+            gh release create "$tag" \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$VERIFIED_SHA" \
+              --title "$title" \
+              --notes-file "$notes" \
+              --prerelease
+          fi
+
+          git fetch --force origin "refs/tags/$tag:refs/tags/$tag"
+          actual_sha="$(git rev-list -n 1 "$tag")"
+          if [ "$actual_sha" != "$VERIFIED_SHA" ]; then
+            echo "Tag target mismatch: expected $VERIFIED_SHA, got $actual_sha" >&2
+            exit 1
+          fi
+
+          is_prerelease="$(gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isPrerelease --jq '.isPrerelease')"
+          if [ "$is_prerelease" != "true" ]; then
+            echo "Release exists but is not marked as a pre-release." >&2
+            exit 1
+          fi
+
+          echo "Verified pre-release $tag at $VERIFIED_SHA."
