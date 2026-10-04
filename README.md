@@ -67,3 +67,10 @@ The repository is intended to be discoverable around provider-neutral AI agents,
 ## License
 
 Licensed under the Apache License, Version 2.0. See `LICENSE` for the full license text.
+
+
+## Open-source maintenance
+
+Sazan Quickstarts is actively maintained as a public open-source project. See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution requirements, [SECURITY.md](SECURITY.md) for vulnerability reporting, [MAINTAINERS.md](MAINTAINERS.md) for maintainer responsibilities, and [docs/OPEN_SOURCE_MAINTENANCE.md](docs/OPEN_SOURCE_MAINTENANCE.md) for the maintenance and release model.
+
+Repository activity is evidence-driven: issues, pull requests, tests, and releases should reflect real work. The project does not claim adoption, production readiness, or usage metrics that have not been verified.
