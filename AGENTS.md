@@ -2,6 +2,18 @@
 
 Instructions for AI agents working in this repository.
 
+## قانون اول: متن‌های قابل کپی برای کاربر فارسی‌زبان
+
+این قانون در تعامل با کاربر اولویت نمایشی دارد:
+
+- پاسخ توضیحی می‌تواند فارسی باشد.
+- هر متن انگلیسی یا آلمانی که کاربر باید در فرم، ایمیل، وب‌سایت، ترمینال، تنظیمات، نام مخزن، مسیر، شناسه، لینک یا هر فیلد دیگری کپی کند، باید در یک بلوک کد جداگانه ارائه شود تا مستقیم و بدون تغییر قابل کپی باشد.
+- داخل بلوک قابل‌کپی از گیومه، کوتیشن یا نشانه‌های تزئینی اطراف متن استفاده نکن، مگر اینکه خودِ آن علامت بخشی از مقدار واقعی موردنیاز باشد.
+- متن قابل‌کپی را با توضیح فارسی در همان خط مخلوط نکن.
+- برای چند مقدار مستقل، هر مقدار را در بلوک کد مستقل یا در خطوط واضح داخل یک بلوک کد قرار بده.
+- در صورت وجود اختلاف میان زیبایی نمایش و قابلیت کپی، قابلیت کپی اولویت دارد.
+
+
 ## Shared execution policy
 
 Apply `sazan-efficient-operator` as the execution-efficiency layer. Minimize unnecessary token use, repeated context, narration, and interruptions. Continue consecutive safe steps without asking for permission merely to proceed. Ask only for genuine blockers. Never sacrifice correctness, testing, security, documentation, or evidence for brevity.
