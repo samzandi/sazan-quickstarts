@@ -2,7 +2,7 @@
 
 Status: **pre-release; not production-ready**
 
-This first release candidate packages the currently implemented Sazan Quickstarts together with repository-level validation, licensing documentation, and a dedicated release gate.
+This first release candidate packages the currently implemented Sazan Quickstarts together with repository-level validation, licensing documentation, community-maintenance guidance, structured contribution templates, and a dedicated release gate.
 
 ## Included quickstarts
 
@@ -22,13 +22,15 @@ This first release candidate packages the currently implemented Sazan Quickstart
 
 The release candidate passed Repository Validation on Python 3.11, 3.12, and 3.13 and passed the dedicated Release Gate. The release gate resolved the current dependency set, produced an exact dependency snapshot, generated machine-readable third-party license metadata, and failed closed on missing or UNKNOWN license metadata.
 
-Approved release commit:
-
-`b1f8eb6a5a96c5257d58383b5775841f8eac4e50`
+The exact release target is recorded in the publication issue after the final release-candidate documentation commit and must match a green Release Gate run on `main`.
 
 Intended tag:
 
 `v0.1.0-rc.1`
+
+## Open-source maintenance
+
+The candidate includes contribution, security, maintainer, conduct, changelog, issue-template, pull-request-template, and open-source maintenance documentation. Repository validation requires these community-health files so they cannot silently disappear from the release branch.
 
 ## Licensing
 
