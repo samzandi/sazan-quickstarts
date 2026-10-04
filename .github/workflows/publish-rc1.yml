@@ -39,15 +39,25 @@ jobs:
           test -s "$notes"
 
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "Release $tag already exists; verifying its tag target."
-          else
-            gh release create "$tag" \
-              --repo "$GITHUB_REPOSITORY" \
-              --target "$VERIFIED_SHA" \
-              --title "$title" \
-              --notes-file "$notes" \
-              --prerelease
+            git fetch --force origin "refs/tags/$tag:refs/tags/$tag"
+            actual_sha="$(git rev-list -n 1 "$tag")"
+            is_prerelease="$(gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isPrerelease --jq '.isPrerelease')"
+
+            if [ "$is_prerelease" != "true" ]; then
+              echo "Existing release $tag is not marked as a pre-release." >&2
+              exit 1
+            fi
+
+            echo "Release $tag already exists at $actual_sha; no publication action is required."
+            exit 0
           fi
+
+          gh release create "$tag" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$VERIFIED_SHA" \
+            --title "$title" \
+            --notes-file "$notes" \
+            --prerelease
 
           git fetch --force origin "refs/tags/$tag:refs/tags/$tag"
           actual_sha="$(git rev-list -n 1 "$tag")"
@@ -58,8 +68,8 @@ jobs:
 
           is_prerelease="$(gh release view "$tag" --repo "$GITHUB_REPOSITORY" --json isPrerelease --jq '.isPrerelease')"
           if [ "$is_prerelease" != "true" ]; then
-            echo "Release exists but is not marked as a pre-release." >&2
+            echo "Published release is not marked as a pre-release." >&2
             exit 1
           fi
 
-          echo "Verified pre-release $tag at $VERIFIED_SHA."
+          echo "Verified newly published pre-release $tag at $VERIFIED_SHA."
