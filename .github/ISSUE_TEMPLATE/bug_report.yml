@@ -1,0 +1,51 @@
+name: Bug report
+description: Report a reproducible problem in a quickstart or repository workflow.
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - agent-starter
+        - browser-agent
+        - business-agent
+        - coding-agent
+        - computer-agent
+        - customer-support-agent
+        - document-agent
+        - email-agent
+        - mcp-starter
+        - research-agent
+        - reviva-agent
+        - repository tooling
+        - documentation
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide the smallest reproducible steps. Remove secrets and private data.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, OS, provider, and relevant package versions.
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, tokens, customer data, and other sensitive information.
+          required: true

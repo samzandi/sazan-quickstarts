@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security policy
+    url: https://github.com/samzandi/sazan-quickstarts/security/policy
+    about: Please use the repository security policy for vulnerabilities.
