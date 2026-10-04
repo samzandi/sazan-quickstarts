@@ -32,6 +32,18 @@ REQUIRED_RELEASE_DOCS = (
     "docs/THIRD_PARTY_LICENSES.md",
 )
 
+REQUIRED_COMMUNITY_FILES = (
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "MAINTAINERS.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "docs/OPEN_SOURCE_MAINTENANCE.md",
+    ".github/ISSUE_TEMPLATE/bug_report.yml",
+    ".github/ISSUE_TEMPLATE/feature_request.yml",
+    ".github/pull_request_template.md",
+)
+
 
 def validate() -> list[str]:
     errors: list[str] = []
@@ -66,6 +78,10 @@ def validate() -> list[str]:
     for relative in REQUIRED_RELEASE_DOCS:
         if not (ROOT / relative).is_file():
             errors.append(f"missing release-readiness document: {relative}")
+
+    for relative in REQUIRED_COMMUNITY_FILES:
+        if not (ROOT / relative).is_file():
+            errors.append(f"missing community-health file: {relative}")
 
     third_party = ROOT / "docs" / "THIRD_PARTY_LICENSES.md"
     if third_party.is_file():
@@ -104,7 +120,8 @@ def main() -> int:
 
     print(
         f"Repository validation passed for {len(EXPECTED)} quickstarts, "
-        f"{len(REQUIRED_RELEASE_DOCS)} release-readiness documents, Apache-2.0 licensing, "
+        f"{len(REQUIRED_RELEASE_DOCS)} release-readiness documents, "
+        f"{len(REQUIRED_COMMUNITY_FILES)} community-health files, Apache-2.0 licensing, "
         "and direct third-party dependency review."
     )
     return 0
