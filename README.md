@@ -76,7 +76,7 @@ See `START_HERE.md`, `AGENTS.md`, and `SECURITY.md` before contributing.
 
 ## Status
 
-The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository is in **pre-1.0 development** and must **not** be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
+The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository is in **pre-release, pre-1.0 development** and must **not** be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
 
 ## Discoverability
 
