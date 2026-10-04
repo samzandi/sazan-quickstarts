@@ -2,7 +2,7 @@
 
 Status: **pre-release; not production-ready**
 
-This first release candidate packages the currently implemented Sazan Quickstarts together with repository-level validation, licensing documentation, and a dedicated release gate.
+This first release candidate packages the implemented Sazan Quickstarts together with repository-level validation, security guidance, community-maintenance files, licensing documentation, and a dedicated fail-closed release gate.
 
 ## Included quickstarts
 
@@ -18,13 +18,26 @@ This first release candidate packages the currently implemented Sazan Quickstart
 - research-agent
 - reviva-agent
 
+## Open-source maintenance baseline
+
+The release candidate includes:
+
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
+- `MAINTAINERS.md`
+- `SECURITY.md`
+- `CHANGELOG.md`
+- structured issue templates
+- a pull-request template
+- `docs/OPEN_SOURCE_MAINTENANCE.md`
+
+These files define contribution, security, maintainer, issue, pull-request, and release expectations without claiming adoption or production readiness that has not been verified.
+
 ## Release evidence
 
-The release candidate passed Repository Validation on Python 3.11, 3.12, and 3.13 and passed the dedicated Release Gate. The release gate resolved the current dependency set, produced an exact dependency snapshot, generated machine-readable third-party license metadata, and failed closed on missing or UNKNOWN license metadata.
+The repository validation matrix runs on Python 3.11, 3.12, and 3.13. The dedicated Release Gate validates repository structure, resolves the dependency set, records an exact dependency snapshot, generates machine-readable third-party license metadata, and fails closed on missing or UNKNOWN license metadata.
 
-Approved release commit:
-
-`b1f8eb6a5a96c5257d58383b5775841f8eac4e50`
+The exact release target commit and the final green workflow evidence are recorded in GitHub issue #31 immediately before publication so the release target cannot drift.
 
 Intended tag:
 
@@ -40,4 +53,4 @@ This release candidate is intended for evaluation, experimentation, and developm
 
 ## Publication rule
 
-The GitHub release must be published as a pre-release, must target the exact approved commit above, and must not be presented as the latest stable release.
+The GitHub release must be published as a pre-release, must target the exact commit recorded in issue #31 after all release-gate checks pass, and must not be presented as the latest stable release.
