@@ -1,6 +1,23 @@
 # Sazan Quickstarts
 
+[![Repository Validation](https://github.com/samzandi/sazan-quickstarts/actions/workflows/repository-validation.yml/badge.svg)](https://github.com/samzandi/sazan-quickstarts/actions/workflows/repository-validation.yml)
+[![Release Gate](https://github.com/samzandi/sazan-quickstarts/actions/workflows/release-gate.yml/badge.svg)](https://github.com/samzandi/sazan-quickstarts/actions/workflows/release-gate.yml)
+[![GitHub release](https://img.shields.io/github/v/release/samzandi/sazan-quickstarts?include_prereleases)](https://github.com/samzandi/sazan-quickstarts/releases)
+[![License](https://img.shields.io/github/license/samzandi/sazan-quickstarts)](LICENSE)
+
 A practical, provider-agnostic collection of AI agent quickstarts for building real-world applications with model providers, MCP tools, browser automation, document workflows, and business agents.
+
+## Quick start
+
+Clone the repository and run the credential-free starter:
+
+```bash
+git clone https://github.com/samzandi/sazan-quickstarts.git
+cd sazan-quickstarts/quickstarts/agent-starter
+python app.py
+```
+
+The default provider is `mock`, so the first run does not require an API key. Each quickstart documents its own provider, security, and validation requirements.
 
 ## Goals
 
@@ -38,19 +55,20 @@ python tools/validate_repository.py
 
 The validator checks the quickstart index, required README/test structure, canonical workflow coverage, legacy duplicate workflows, release-readiness documentation, and the selected repository license.
 
-## Release readiness
+## Releases
 
-Before any public release, review:
+The first public release candidate is available as [v0.1.0-rc.1](https://github.com/samzandi/sazan-quickstarts/releases/tag/v0.1.0-rc.1).
+
+Release publication is guarded by repository validation, dependency/license evidence, and a dedicated fail-closed Release Gate. See:
 
 - `docs/RELEASE_CHECKLIST.md`
 - `docs/PRE_RELEASE_READINESS.md`
+- `docs/RELEASE_NOTES_v0.1.0-rc.1.md`
 - `SECURITY.md`
-
-Apache-2.0 has been selected by the repository owner. A public release still requires an intentional version/tag, a final green CI snapshot on the exact release commit, and a third-party licensing/attribution review.
 
 ## Project discipline
 
-Work should follow this lifecycle:
+Work follows this lifecycle:
 
 `Issue -> Plan -> Implementation -> Test -> Evidence -> Review -> Done`
 
@@ -58,16 +76,15 @@ See `START_HERE.md`, `AGENTS.md`, and `SECURITY.md` before contributing.
 
 ## Status
 
-The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository as a whole is still **pre-release** and must **not** be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
+The quickstarts listed above are implemented and individually tested to the extent documented in their own READMEs and CI workflows. The repository is in **pre-1.0 development** and must **not** be treated as production-ready without deployment, security, failure-handling, observability, and workload-specific validation.
 
 ## Discoverability
 
-The repository is intended to be discoverable around provider-neutral AI agents, MCP, Python agent workflows, browser automation, coding agents, document/email/research agents, security-first examples, and ReViva restoration planning. Recommended repository description and GitHub topics are recorded in `docs/PRE_RELEASE_READINESS.md` so repository settings can be applied deliberately rather than inferred.
+The repository is intended to be discoverable around provider-neutral AI agents, MCP, Python agent workflows, browser automation, coding agents, document/email/research agents, security-first examples, and ReViva restoration planning. Recommended repository description and GitHub topics are recorded in `docs/PRE_RELEASE_READINESS.md`.
 
 ## License
 
 Licensed under the Apache License, Version 2.0. See `LICENSE` for the full license text.
-
 
 ## Open-source maintenance
 
